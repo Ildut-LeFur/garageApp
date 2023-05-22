@@ -13,7 +13,10 @@ public class Car {
         RED,
         BLUE,
         GREEN,
-        YELLOW
+        YELLOW,
+        WHITE,
+        GREY,
+        BLACK
     }
 
     @Id
@@ -25,30 +28,28 @@ public class Car {
     @Column(name = "released_year")
     private int year;
     private Color color;
+    private String vin;
 
     public Car() {
 
     }
 
-    public Car(long id, String model, String brand, int year, Color color) {
+    public Car(long id, String model, String brand, int year, Color color, String vin) {
         super();
         this.id = id;
         this.model = model;
         this.brand = brand;
         this.year = year;
         this.color = color;
+        this.vin = vin;
     }
 
     public long getId() {
         return id;
     }
-
-
     public void setId(long id) {
         this.id = id;
     }
-
-
     public String getModel() {
         return model;
     }
@@ -72,6 +73,12 @@ public class Car {
     }
     public void setColor(Color color) {
         this.color = color;
+    }
+    public String getVin() {
+        return vin;
+    }
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 
 }

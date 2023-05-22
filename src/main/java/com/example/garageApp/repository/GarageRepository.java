@@ -6,6 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GarageRepository extends CrudRepository<Car, Long>{
-    
+public interface GarageRepository extends CrudRepository<Car, Long>, CustomizedGarageRepository{
+
+    // @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    // private EntityManager entityManager;
+
 }

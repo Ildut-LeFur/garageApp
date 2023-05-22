@@ -29,14 +29,14 @@ public class GarageController {
         return garageService.getCars();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/car/{id}")
-    public Car getCar(@PathVariable long id) {
-        return garageService.getCar(id);
+    @RequestMapping(method = RequestMethod.GET, value = "/cars/{vin}")
+    public Car getCar(@PathVariable String vin) {
+        return garageService.getCar(vin);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/car/{id}")
-    public void deleteCar(@PathVariable long id) {
-        garageService.deleteCar(id);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/cars/{vin}")
+    public void deleteCar(@PathVariable String vin) {
+        garageService.deleteCar(vin);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/cars")
@@ -44,9 +44,9 @@ public class GarageController {
         garageService.addCar(car);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/car/{id}")
-    public void updateCar(@RequestBody Car car,@PathVariable long id) {
-        garageService.updateCar(car, id);
+    @RequestMapping(method = RequestMethod.PUT, value = "/cars/{vin}")
+    public void updateCar(@RequestBody Car car,@PathVariable String vin) {
+        garageService.updateCar(car, vin);
     }
 
     @RequestMapping("/user")

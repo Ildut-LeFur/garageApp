@@ -3,16 +3,9 @@ package com.example.garageApp.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.header.writers.StaticHeadersWriter;
 
 
@@ -36,7 +29,8 @@ public class SecurityConfiguration {
         .requestMatchers("/", "/home", "/login").permitAll()
         .anyRequest().authenticated()
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin","*"))
-        .and().headers().frameOptions().sameOrigin()
+        .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers","*"))
+        // .and().headers().frameOptions().sameOrigin()
         .and().cors().and().csrf().disable();
         // .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
  
@@ -49,10 +43,7 @@ public class SecurityConfiguration {
     // public InMemoryUserDetailsManager userDetailsService() {
         
     // }
-    // @Bean
-    // public WebSecurityCustomizer webSecurityCustomizer() {
-    //     return (web) -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
-    // }
+
 
     //----------------------------------------------------------------------
     // @Bean

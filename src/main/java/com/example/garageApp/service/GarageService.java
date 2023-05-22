@@ -27,19 +27,19 @@ public class GarageService {
         return cars;
     }
 
-    public Car getCar(long id) {
-        return garageRepository.findById(id).orElse(null);
+    public Car getCar(String vin) {
+        return garageRepository.findByVin(vin).get(0);
     }
 
-    public void deleteCar(long id) {
-        garageRepository.deleteById(id);
+    public void deleteCar(String vin) {
+        garageRepository.deleteByVin(vin);
     }
 
     public void addCar(Car car) {
         garageRepository.save(car);
     }
 
-    public void updateCar(Car car, long id) {
+    public void updateCar(Car car, String vin) {
         garageRepository.save(car);
     }
 
