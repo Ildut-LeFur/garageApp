@@ -21,7 +21,6 @@ class CustomizedGarageRepositoryImpl implements CustomizedGarageRepository {
         entityManager.getTransaction().commit();
     }
     public List<Car> findByVin(String vin) {
-        // List<Car> car=null;
         entityManager.getTransaction().begin();
         entityManager.getTransaction().commit();
         return this.entityManager.createQuery("SELECT c FROM Car c WHERE c.vin LIKE :VIN")

@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+// import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.header.writers.StaticHeadersWriter;
 
 
@@ -30,19 +31,15 @@ public class SecurityConfiguration {
         .anyRequest().authenticated()
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin","*"))
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers","*"))
+        .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age","300"))
+        .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods","GET,DELETE,HEAD,OPTIONS"))
+        .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials","true"))
         // .and().headers().frameOptions().sameOrigin()
         .and().cors().and().csrf().disable();
         // .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
  
-        // http.headers().frameOptions().sameOrigin();
- 
         return http.build();
     }
- 
-    // @Bean
-    // public InMemoryUserDetailsManager userDetailsService() {
-        
-    // }
 
 
     //----------------------------------------------------------------------
