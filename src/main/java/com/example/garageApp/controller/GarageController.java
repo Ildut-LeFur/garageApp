@@ -11,10 +11,12 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
@@ -24,37 +26,37 @@ public class GarageController {
     @Autowired
     private GarageService garageService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/cars")
+    @GetMapping("/cars")
     public List<Car> getCar() {
         return garageService.getCars();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/cars/{vin}")
+    @GetMapping("/cars/{vin}")
     public Car getCar(@PathVariable String vin) {
         return garageService.getCar(vin);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/cars/{vin}")
+    @DeleteMapping("/cars/{vin}")
     public void deleteCar(@PathVariable String vin) {
         garageService.deleteCar(vin);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/cars")
+    @PostMapping("/cars")
     public void addCar(@RequestBody Car car) {
         garageService.addCar(car);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/cars/{vin}")
+    @PutMapping("/cars/{vin}")
     public void updateCar(@RequestBody Car car,@PathVariable String vin) {
         garageService.updateCar(car, vin);
     }
 
-    @RequestMapping("/user")
+    @GetMapping("/user")
     public Principal user(Principal user) {
         return user;
     }
     
-    @RequestMapping("/resource")
+    @GetMapping("/resource")
     public Map<String,Object> home() {
         Map<String,Object> model = new HashMap<String,Object>();
         model.put("id", UUID.randomUUID().toString());

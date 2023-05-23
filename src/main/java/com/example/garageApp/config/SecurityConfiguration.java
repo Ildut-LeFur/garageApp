@@ -32,7 +32,7 @@ public class SecurityConfiguration {
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin","*"))
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers","*"))
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age","300"))
-        .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods","GET,DELETE,HEAD,OPTIONS"))
+        .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods","GET,POST,DELETE,HEAD,OPTIONS"))
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials","true"))
         // .and().headers().frameOptions().sameOrigin()
         .and().cors().and().csrf().disable();
