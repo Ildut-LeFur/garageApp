@@ -39,7 +39,8 @@ public class GarageService {
         garageRepository.save(car);
     }
 
-    public void updateCar(Car car, String vin) {
+    public void editCar(Car car, String vin) {
+        garageRepository.deleteByVin(vin);
         garageRepository.save(car);
     }
 

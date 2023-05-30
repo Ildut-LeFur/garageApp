@@ -3,11 +3,7 @@ package com.example.garageApp.controller;
 import com.example.garageApp.model.Car;
 import com.example.garageApp.service.GarageService;
 
-import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,21 +43,8 @@ public class GarageController {
     }
 
     @PutMapping("/cars/{vin}")
-    public void updateCar(@RequestBody Car car,@PathVariable String vin) {
-        garageService.updateCar(car, vin);
+    public void editCar(@RequestBody Car car,@PathVariable String vin) {
+        garageService.editCar(car, vin);
     }
 
-    @GetMapping("/user")
-    public Principal user(Principal user) {
-        return user;
-    }
-    
-    @GetMapping("/resource")
-    public Map<String,Object> home() {
-        Map<String,Object> model = new HashMap<String,Object>();
-        model.put("id", UUID.randomUUID().toString());
-        model.put("content", "Hello World");
-        return model;
-    }
-    
 }
