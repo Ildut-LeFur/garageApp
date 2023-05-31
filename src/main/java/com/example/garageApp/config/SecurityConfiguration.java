@@ -1,7 +1,9 @@
 package com.example.garageApp.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,6 +16,8 @@ import org.springframework.security.web.header.writers.StaticHeadersWriter;
 @EnableWebSecurity
 public class SecurityConfiguration {
     
+    @Autowired
+    private Environment env;
     //----------------------------------------------------------------------
     // @Bean
     // public BCryptPasswordEncoder passwordEncoder() {
@@ -27,7 +31,7 @@ public class SecurityConfiguration {
         .and().authorizeHttpRequests()
         .requestMatchers("/", "/home", "/login").permitAll()
         .anyRequest().authenticated()
-        .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin","localhost:8080"))
+        .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin","http://localhost:"+this.env.getProperty("server.port")))
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers","*"))
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age","300"))
         .and().headers().addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods","GET,POST,DELETE,HEAD,OPTIONS"))

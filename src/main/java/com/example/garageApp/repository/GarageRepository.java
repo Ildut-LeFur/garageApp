@@ -15,12 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface GarageRepository extends CrudRepository<Car, Long>{
 
-
     @Modifying
-    @Query(value = "DELETE FROM Car c WHERE c.vin =:VIN")
-    int deleteByVin(@Param("VIN") String vin);
+    @Query(value = "DELETE FROM Car c WHERE c.vin = :VIN")
+    Integer deleteByVin(@Param("VIN") String vin);
 
-    @Query(value = "SELECT c FROM Car c WHERE c.vin =:VIN")
+    @Query(value = "SELECT c FROM Car c WHERE c.vin = :VIN")
     List<Car> findByVin(@Param("VIN") String vin);
-
+    
 }

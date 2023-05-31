@@ -17,7 +17,6 @@ public class GarageService {
     @Autowired
     private GarageRepository garageRepository;
 
-
     
     public List<Car> getCars() {
         List<Car> cars = new ArrayList<Car>();
